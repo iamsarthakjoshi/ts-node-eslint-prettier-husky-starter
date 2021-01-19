@@ -325,7 +325,75 @@ When working with other developers as a team, it can be challenging to keep the 
 
 How do we ensure that any code that gets commited and pushed to source control is properly formatted first?
 
-> TODO
+Husky to prevent bad git commits and enforce code standards in your project.
+
+When you initialize Git (the version control tool that you're probably familar with) on a project, it automatically comes with a feature called hooks.
+
+If you go to the root of a project intialized with Git and type:
+
+```
+ls .git/hooks
+```
+
+You'll see a list of sample hooks like `pre-push`, `pre-rebase`, `pre-commit`, and so on. This is a way for us to write plugin code to execute some logic before we perform the action.
+
+If we wanted to ensure before someone creates a commit using the git commit command, that their code was properly linted and formatted, we could write a `pre-commit` Git hook.
+
+## Installing Husky
+
+To install Husky, run:
+
+```
+npm install husky --save-dev
+```
+
+## Configuring Husky
+
+To configure Husky, in the root of our project's `package.json`, add the following `husky` key:
+
+```
+"husky": {
+  "hooks": {
+    "pre-commit": "", // Command goes here
+    "pre-push": "", // Command goes here
+    "...": "..."
+  }
+}
+```
+
+When we execute the git commit or git push command, the respective hook will run the script we supply in our package.json.
+
+## Example workflow
+
+Following along from the previous configured ESLint and Prettier, let's utilize two scripts:
+
+- `prettier-format`: Format as much code as possible.
+- `lint`: Ensure that the coding conventions are being adhered to. Throw an error if important conventions are broken.
+
+`package.json`
+
+```
+{
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts",
+    ...
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier-format && npm run lint"
+    }
+  }
+}
+```
+
+Include these `scripts` in the scripts object in the `package.json`. Then, at the very least, run `prettier-format` and then `lint` as a `pre-commit` hook.
+
+This will ensure that you cannot complete a `commit` without formatted code that passes the conventions.
+
+## Other considerations
+
+If you notice that linting is taking a long time, check out this package, [lint-staged](https://github.com/okonet/lint-staged). It runs the linter, but only against files that are staged (files that you're ready to push).
 
 ## Formatting using an filesystem watcher
 

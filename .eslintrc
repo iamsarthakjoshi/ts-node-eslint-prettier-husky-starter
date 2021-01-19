@@ -14,7 +14,7 @@
     ],
     "rules": {
         "no-console": 0,
-        "no-loops/no-loops": 1,
+        "no-loops/no-loops": 2,
         "prettier/prettier": 2
     }
 }
