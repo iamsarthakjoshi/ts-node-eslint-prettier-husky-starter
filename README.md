@@ -4,37 +4,39 @@ TypeScript project from scratch with cold-reloading, and scripts for building, d
 
 ## ts config setup
 
-> npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
+```
+npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModule --lib es6 --module commonjs --allowJs true --noImplicitAny true
+```
 
-- **rootDir**: This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
-- **outDir**: Where TypeScript puts our compiled code. We want it to go to a build/ folder.
-- **esModuleInterop**: If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
-- **resolveJsonModule**: If we use JSON in this project, this option allows TypeScript to use it.
-- **lib**: This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
-- **module**: commonjs is the standard Node module system in 2019. Let's use that.
-- **allowJs**: If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
-- **noImplicitAny**: In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
+- `rootDir`: This is where TypeScript looks for our code. We've configured it to look in the src/ folder. That's where we'll write our TypeScript.
+- `outDir`: Where TypeScript puts our compiled code. We want it to go to a build/ folder.
+- `esModuleInterop`: If you were in the JavaScript space over the past couple of years, you might have recognized that modules systems had gotten a little bit out of control (AMD, SystemJS, ES Modules, etc). For a topic that requires a much longer discussion, if we're using commonjs as our module system (for Node apps, you should be), then we need this to be set to true.
+- `resolveJsonModule`: If we use JSON in this project, this option allows TypeScript to use it.
+- `lib`: This option adds ambient types to our project, allowing us to rely on features from different Ecmascript versions, testing libraries, and even the browser DOM api. We'd like to utilize some es6 language features. This all gets compiled down to es5.
+- `module`: commonjs is the standard Node module system in 2019. Let's use that.
+- `allowJs`: If you're converting an old JavaScript project to TypeScript, this option will allow you to include .js files among .ts ones.
+- `noImplicitAny`: In TypeScript files, don't allow a type to be unexplicitly specified. Every type needs to either have a specific type or be explicitly declared any. No implicit anys.
 
 ## Scripts overview
 
-> npm run start:dev
+`npm run start:dev`
 
 Starts the application in development using nodemon and ts-node to do cold reloading.
 
-> npm run build
+`npm run build`
 
 Builds the app at build, cleaning the folder first.
 
-> npm run start
+`npm run start`
 
 Starts the app in production by first building the project with npm run build, and then executing the compiled JavaScript at build/index.js.
 
 ## Dev Tools
 
-- **rimraf**: a cross-platform tool that acts like the rm -rf command (just obliterates whatever you tell it to).
-- **ts-node**: for running TypeScript code directly without having to wait for it be compiled
-- **nodemon**: to watch for changes to our code and automatically restart when a file is changed
-- **@types/node**: TypeScript has Implicit, Explicit, and Ambient types. Ambient types are types that get added to the global execution scope. Since we're using Node, it would be good if we could get type safety and auto-completion on the Node apis like **file**, **path**, **process**, etc. That's what installing the [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) type definition for Node will do.
+- `rimraf`: a cross-platform tool that acts like the rm -rf command (just obliterates whatever you tell it to).
+- `ts-node`: for running TypeScript code directly without having to wait for it be compiled
+- `nodemon`: to watch for changes to our code and automatically restart when a file is changed
+- `@types/node`: TypeScript has Implicit, Explicit, and Ambient types. Ambient types are types that get added to the global execution scope. Since we're using Node, it would be good if we could get type safety and auto-completion on the Node apis like `file`, `path`, `process`, etc. That's what installing the [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) type definition for Node will do.
 
 # ESLint and TSLint
 
@@ -44,7 +46,7 @@ You may have also heard of TSLint, the TypeScript equivalent. In 2019, the team 
 
 ## Installation and setup
 
-> npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+`npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
 
 ## Basic Starter Config for .eslintrc file
 
@@ -63,7 +65,7 @@ You may have also heard of TSLint, the TypeScript equivalent. In 2019, the team 
 }
 ```
 
-## ignorinf files we don't want to lint with .eslintignore file
+## Ignoring files we don't want to lint with `.eslintignore` file
 
 ```
 node_modules
@@ -86,9 +88,9 @@ build
 
 There are three modes for a rule in eslint: off, warn, and error.
 
-- **off**: means 0 (turns the rule off completely)
-- **warn**: means 1 (turns the rule on but won't make the linter fail)
-- **error**: means 2 (turns the rule on and will make the linter fail)
+- `off`: means 0 (turns the rule off completely)
+- `warn`: means 1 (turns the rule on but won't make the linter fail)
+- `error`: means 2 (turns the rule on and will make the linter fail)
 
 ## Adding a rule
 
@@ -123,9 +125,9 @@ ESLint also allows you to add one-off features to your config. These are known a
 
 Here's a fun one. It's called [no-loops](https://github.com/buildo/eslint-plugin-no-loops).
 
-`Check out this list of other [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) plugins and configs.`
+> Check out this list of other [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) plugins and configs.
 
-> npm install --save-dev eslint-plugin-no-loops
+`npm install --save-dev eslint-plugin-no-loops`
 
 And then update your `.eslintrc` with `no-loops` in the "plugins" array, and add the rule to the "rules" attribute like so.
 
@@ -153,7 +155,7 @@ Start with a different base config- Shopify's, for example.
 
 Looking at their [readme](https://github.com/Shopify/eslint-plugin-shopify), we need to install it by running:
 
-> npm install eslint-plugin-shopify --save-dev
+`npm install eslint-plugin-shopify --save-dev`
 
 Update `.eslintrc`
 
@@ -169,7 +171,7 @@ Update `.eslintrc`
 }
 ```
 
-`You can add several base configs to your project by including them in the array, though you may end up seeeing the same linting rules twice or more.`
+> You can add several base configs to your project by including them in the array, though you may end up seeeing the same linting rules twice or more.
 
 # Prettier with ESLint
 
@@ -190,8 +192,9 @@ Combining both ESLint and Prettier, the responsibility division is this:
 
 As per the [docs](https://prettier.io/docs/en/configuration.html), we can expose a JSON file called `.prettierrc` to put our configuration within.
 
-> touch .prettierrc
-> A basic `.prettierrc` setting is the following:
+`touch .prettierrc`
+
+A basic `.prettierrc` setting is the following:
 
 ```
 {
@@ -205,10 +208,10 @@ As per the [docs](https://prettier.io/docs/en/configuration.html), we can expose
 
 These settings specify the following rules:
 
-- **semi**: set to `true` means that Prettier will add semicolons when necessary.
-- **trailingComma**: set to `none` means that Prettier will remove any trailing commas at the end of objects.
-- **singleQuote**: set to `true` means that Prettier will automatically use single quotes instead of double quotes.
-- **printWidth**: set to `80` specifies that the printer will wrap any lines that exceed 80 characters.
+- `semi`: set to `true` means that Prettier will add semicolons when necessary.
+- `trailingComma`: set to `none` means that Prettier will remove any trailing commas at the end of objects.
+- `singleQuote`: set to `true` means that Prettier will automatically use single quotes instead of double quotes.
+- `printWidth`: set to `80` specifies that the printer will wrap any lines that exceed 80 characters.
 
 You can view the rest of the options [here](https://prettier.io/docs/en/options.html) and change them as you like! This is just my personal preference.
 
@@ -218,7 +221,7 @@ You can view the rest of the options [here](https://prettier.io/docs/en/options.
 {
   "scripts": {
     ...
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier-format": "prettier --config .prettierrc 'src/`/*.ts' --write"
   }
 }
 ```
@@ -227,11 +230,11 @@ You can view the rest of the options [here](https://prettier.io/docs/en/options.
 
 With ESLint and Prettier already installed, install these two packages as well.
 
-> npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+`npm install --save-dev eslint-config-prettier eslint-plugin-prettier`
 
-- **eslint-config-prettier**: Turns off all ESLint rules that have the potential to interfere with
+- `eslint-config-prettier`: Turns off all ESLint rules that have the potential to interfere with
   Prettier rules.
-- **eslint-plugin-prettier**: Turns Prettier rules into ESLint rules.
+- `eslint-plugin-prettier`: Turns Prettier rules into ESLint rules.
 
 Lastly, we need to make an adjustment to the `.eslintrc`.
 
@@ -294,13 +297,15 @@ In the JSON file, if it's not already added, add the following lines to the root
 }
 ```
 
-`These settings will format your code both when you paste new code and when you save code for any file extension that Prettier understands. If the root of the project that the file lives in has a .prettierrc, it will use the settings that live in that file to format your code.`
+> These settings will format your code both when you paste new code and when you save code for any file extension that Prettier understands. If the root of the project that the file lives in has a `.prettierrc`, it will use the settings that live in that file to format your code.
 
 ## Formatting before a commit - Enforcing Coding Conventions with Husky Pre-commit Hooks (recommended)
 
 When working with other developers as a team, it can be challenging to keep the formatting of the code clean constantly. Not everyone will want to use the Prettier VS Code extension. Not everyone will want to use VS Code!
 
 How do we ensure that any code that gets commited and pushed to source control is properly formatted first?
+
+> TODO
 
 ## Formatting using an filesystem watcher
 
@@ -312,7 +317,7 @@ Here's how that works.
 
 Install `onchange`.
 
-> npm install - -save-dev onchange
+`npm install - -save-dev onchange`
 
 Then, add this script to your `package.json`, making sure to change the watched directory if you keep your source code in a location different the `src` folder.
 
