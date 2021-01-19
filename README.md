@@ -200,7 +200,9 @@ Combining both ESLint and Prettier, the responsibility division is this:
 
 ## Installing Prettier as dev dep
 
-> npm install --save-dev prettier
+```
+npm install --save-dev prettier
+```
 
 ## Configuring Prettier
 
