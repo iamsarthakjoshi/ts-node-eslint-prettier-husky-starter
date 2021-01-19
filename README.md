@@ -19,15 +19,21 @@ npx tsc --init --rootDir src --outDir build --esModuleInterop --resolveJsonModul
 
 ## Scripts overview
 
-`npm run start:dev`
+```
+npm run start:dev
+```
 
 Starts the application in development using nodemon and ts-node to do cold reloading.
 
-`npm run build`
+```
+npm run build
+```
 
 Builds the app at build, cleaning the folder first.
 
-`npm run start`
+```
+npm run start
+```
 
 Starts the app in production by first building the project with npm run build, and then executing the compiled JavaScript at build/index.js.
 
@@ -46,7 +52,9 @@ You may have also heard of TSLint, the TypeScript equivalent. In 2019, the team 
 
 ## Installation and setup
 
-`npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin`
+```
+npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+```
 
 ## Basic Starter Config for .eslintrc file
 
@@ -127,7 +135,9 @@ Here's a fun one. It's called [no-loops](https://github.com/buildo/eslint-plugin
 
 > Check out this list of other [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) plugins and configs.
 
-`npm install --save-dev eslint-plugin-no-loops`
+```
+npm install --save-dev eslint-plugin-no-loops
+```
 
 And then update your `.eslintrc` with `no-loops` in the "plugins" array, and add the rule to the "rules" attribute like so.
 
@@ -155,7 +165,9 @@ Start with a different base config- Shopify's, for example.
 
 Looking at their [readme](https://github.com/Shopify/eslint-plugin-shopify), we need to install it by running:
 
-`npm install eslint-plugin-shopify --save-dev`
+```
+npm install eslint-plugin-shopify --save-dev
+```
 
 Update `.eslintrc`
 
@@ -192,7 +204,9 @@ Combining both ESLint and Prettier, the responsibility division is this:
 
 As per the [docs](https://prettier.io/docs/en/configuration.html), we can expose a JSON file called `.prettierrc` to put our configuration within.
 
-`touch .prettierrc`
+```
+touch .prettierrc
+```
 
 A basic `.prettierrc` setting is the following:
 
@@ -230,7 +244,9 @@ You can view the rest of the options [here](https://prettier.io/docs/en/options.
 
 With ESLint and Prettier already installed, install these two packages as well.
 
-`npm install --save-dev eslint-config-prettier eslint-plugin-prettier`
+```
+npm install --save-dev eslint-config-prettier eslint-plugin-prettier
+```
 
 - `eslint-config-prettier`: Turns off all ESLint rules that have the potential to interfere with
   Prettier rules.
@@ -317,7 +333,9 @@ Here's how that works.
 
 Install `onchange`.
 
-`npm install - -save-dev onchange`
+```
+npm install - -save-dev onchange
+```
 
 Then, add this script to your `package.json`, making sure to change the watched directory if you keep your source code in a location different the `src` folder.
 
